@@ -256,12 +256,12 @@ class PromCSE(object):
                 return combined_results
             else:
                 return pack_single_result(distance[0], idx[0])
-            
 
-if __name__ == "__main__":
+
+def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name_or_path", type=str, 
-            help="Transformers' model name or path")
+            help="Transformers' model name or path", default=None)
     parser.add_argument("--pooler_type", type=str, 
             choices=['cls', 'cls_before_pooler', 'avg', 'avg_top2', 'avg_first_last'], 
             default='cls', 
@@ -322,6 +322,15 @@ if __name__ == "__main__":
             help="Tasks to evaluate on. If '--task_set' is specified, this will be overridden")
     
     
+    
+
+    return parser
+
+
+if __name__ == "__main__":
+
+    parser = get_parser()
+
     args = parser.parse_args()
     
 
